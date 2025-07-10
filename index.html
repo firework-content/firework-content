@@ -147,6 +147,12 @@
     <p>パスワードを入力すると、動画事例を見ることができます。</p>
   </header>
 
+  <div class="password-section">
+    <input type="password" id="passwordInput" placeholder="パスワードを入力">
+    <button onclick="checkPassword()">閲覧</button>
+    <div id="passwordMessage">パスワードが間違っています</div>
+  </div>
+
   <section class="profile-section">
     <h2>Creativeメンバー紹介</h2>
     <p style="color: #ccc;">豊富な経験を持ち合わせた弊社クリエイティブ・ディレクターがサポート致します</p>
@@ -171,12 +177,6 @@
       </div>
     </div>
   </section>
-
-  <div class="password-section">
-    <input type="password" id="passwordInput" placeholder="パスワードを入力">
-    <button onclick="checkPassword()">閲覧</button>
-    <div id="passwordMessage">パスワードが間違っています</div>
-  </div>
 
   <div class="tabs" id="genre-tabs">
     <button class="tab-btn active" data-genre="industry">業種ごと</button>
