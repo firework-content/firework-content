@@ -2,60 +2,64 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>Firework 業種＆クリエイティブ形式 動画参考サイト</title>
+  <title>Firework | 事例ギャラリー</title>
   <script async src="//asset.fwcdn3.com/js/embed-feed.js"></script>
   <style>
+    :root {
+      --accent-color: #1E90FF; /* 青系アクセント。紫にするなら #9b59b6 */
+      --bg-color: #000;
+      --text-color: #fff;
+      --btn-bg: #111;
+      --btn-hover: var(--accent-color);
+    }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      max-width: 960px;
-      margin: auto;
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    header {
       padding: 2rem;
+      text-align: center;
+      border-bottom: 1px solid #333;
     }
     h1 {
-      color: #e6007e;
-      margin-bottom: 1rem;
+      font-size: 2rem;
+      margin: 0 0 0.5rem 0;
     }
-    /* 上段ジャンル切替ボタン */
-    .genre-tabs {
-      margin-bottom: 1.5rem;
+    p {
+      margin: 0;
+      color: #ccc;
+      font-size: 1rem;
     }
-    .genre-tabs button {
-      background: #e6007e;
-      border: none;
-      color: white;
-      padding: 0.5rem 1.2rem;
-      margin-right: 0.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 4px;
+    .genre-tabs, .playlist-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 2rem 1rem 1rem;
     }
-    .genre-tabs button.active {
-      background: #b00066;
-    }
-    /* 中段 プレイリスト切替ボタン */
-    .playlist-tabs {
-      margin-bottom: 2rem;
-    }
-    .playlist-tabs button {
-      background: #0078d4;
-      border: none;
-      color: white;
-      padding: 0.4rem 1rem;
-      margin-right: 0.4rem;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 4px;
+    button {
+      background: var(--btn-bg);
+      color: var(--text-color);
+      border: 1px solid #333;
+      padding: 0.6rem 1.2rem;
       font-size: 0.9rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s ease;
     }
-    .playlist-tabs button.active {
-      background: #005a9e;
+    button:hover, button.active {
+      background: var(--btn-hover);
+      border-color: var(--accent-color);
     }
-    /* Firework埋め込みエリア */
     fw-embed-feed {
       display: none;
       width: 100%;
+      max-width: 960px;
       height: 600px;
-      margin-bottom: 2rem;
+      margin: 2rem auto;
     }
     fw-embed-feed.active {
       display: block;
@@ -63,226 +67,141 @@
   </style>
 </head>
 <body>
-  <h1>Firework 業種＆クリエイティブ形式 動画参考サイト</h1>
-  <p>上のジャンルを選択後、見たい動画タイトルのボタンを押してください。</p>
+  <header>
+    <h1>Firework 動画ギャラリー</h1>
+    <p>業種・形式別に参考事例をチェック</p>
+  </header>
 
-  <!-- ジャンル切替（上段） -->
   <div class="genre-tabs">
     <button data-genre="industry" class="active">業種ごと</button>
-    <button data-genre="creative">クリエイティブ形式ごと</button>
+    <button data-genre="creative">クリエイティブ形式</button>
   </div>
 
-  <!-- 業種ごとプレイリスト切替 -->
   <div class="playlist-tabs" id="industry-tabs">
     <button data-feed="industry-saiyo" class="active">採用</button>
     <button data-feed="industry-biyou">美容・ファッション</button>
     <button data-feed="industry-entame">エンタメ</button>
   </div>
 
-  <!-- クリエイティブ形式ごとプレイリスト切替 -->
-  <div class="playlist-tabs" id="creative-tabs" style="display:none;">
-    <button data-feed="creative-tateyoko" class="active">縦型フレーム＋横型動画</button>
-    <button data-feed="creative-live">ライブ配信切り抜き</button>
+  <div class="playlist-tabs" id="creative-tabs" style="display: none;">
+    <button data-feed="creative-tateyoko" class="active">縦型＋横型</button>
+    <button data-feed="creative-live">ライブ切り抜き</button>
     <button data-feed="creative-quiz">クイズ</button>
     <button data-feed="creative-howto">How To</button>
     <button data-feed="creative-animation">アニメーション</button>
     <button data-feed="creative-seishi">静止画</button>
   </div>
 
-  <!-- 動画埋め込みエリア -->
+  <!-- ▼ Firework埋め込みエリア -->
   <!-- 業種ごと -->
-  <fw-embed-feed
-    id="industry-saiyo"
-    class="active"
-    channel="kontentutimuzhi_zuo_jian_xiu"
-    mode="row"
-    open_in="default"
-    max_videos="0"
-    placement="middle"
-    player_placement="bottom-right"
-    playlist="oNLbQv">
+  <fw-embed-feed id="industry-saiyo" class="active"
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="oNLbQv"
+    mode="row" open_in="default" max_videos="0"
+    placement="middle" player_placement="bottom-right">
   </fw-embed-feed>
 
-  <fw-embed-feed
-    id="industry-biyou"
-    channel="kontentutimuzhi_zuo_jian_xiu"
-    mode="row"
-    open_in="default"
-    max_videos="0"
-    placement="middle"
-    player_placement="bottom-right"
-    playlist="g1a7kg">
+  <fw-embed-feed id="industry-biyou"
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="g1a7kg"
+    mode="row" open_in="default" max_videos="0"
+    placement="middle" player_placement="bottom-right">
   </fw-embed-feed>
 
-  <fw-embed-feed
-    id="industry-entame"
-    channel="kontentutimuzhi_zuo_jian_xiu"
-    mode="row"
-    open_in="default"
-    max_videos="0"
-    placement="middle"
-    player_placement="bottom-right"
-    playlist="oBAaR5">
+  <fw-embed-feed id="industry-entame"
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="oBAaR5"
+    mode="row" open_in="default" max_videos="0"
+    placement="middle" player_placement="bottom-right">
   </fw-embed-feed>
 
   <!-- クリエイティブ形式ごと -->
-  <fw-embed-feed
-    id="creative-tateyoko"
-    class=""
-    channel="kontentutimuzhi_zuo_jian_xiu"
-    mode="row"
-    open_in="default"
-    max_videos="0"
-    placement="middle"
-    player_placement="bottom-right"
-    playlist="vrqPJg">
+  <fw-embed-feed id="creative-tateyoko"
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="vrqPJg"
+    mode="row" open_in="default" max_videos="0"
+    placement="middle" player_placement="bottom-right">
   </fw-embed-feed>
 
-  <fw-embed-feed
-    id="creative-live"
-    channel="kontentutimuzhi_zuo_jian_xiu"
-    mode="row"
-    open_in="default"
-    max_videos="0"
-    placement="middle"
-    player_placement="bottom-right"
-    playlist="5D39Jv">
+  <fw-embed-feed id="creative-live"
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="5D39Jv"
+    mode="row" open_in="default" max_videos="0"
+    placement="middle" player_placement="bottom-right">
   </fw-embed-feed>
 
-  <fw-embed-feed
-    id="creative-quiz"
-    channel="kontentutimuzhi_zuo_jian_xiu"
-    mode="row"
-    open_in="default"
-    max_videos="0"
-    placement="middle"
-    player_placement="bottom-right"
-    playlist="gkB10o">
+  <fw-embed-feed id="creative-quiz"
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="gkB10o"
+    mode="row" open_in="default" max_videos="0"
+    placement="middle" player_placement="bottom-right">
   </fw-embed-feed>
 
-  <fw-embed-feed
-    id="creative-howto"
-    channel="kontentutimuzhi_zuo_jian_xiu"
-    mode="row"
-    open_in="default"
-    max_videos="0"
-    placement="middle"
-    player_placement="bottom-right"
-    playlist="oyx1k5">
+  <fw-embed-feed id="creative-howto"
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="oyx1k5"
+    mode="row" open_in="default" max_videos="0"
+    placement="middle" player_placement="bottom-right">
   </fw-embed-feed>
 
-  <fw-embed-feed
-    id="creative-animation"
-    channel="kontentutimuzhi_zuo_jian_xiu"
-    mode="row"
-    open_in="default"
-    max_videos="0"
-    placement="middle"
-    player_placement="bottom-right"
-    playlist="5xNzMg">
+  <fw-embed-feed id="creative-animation"
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="5xNzMg"
+    mode="row" open_in="default" max_videos="0"
+    placement="middle" player_placement="bottom-right">
   </fw-embed-feed>
 
-  <fw-embed-feed
-    id="creative-seishi"
-    channel="kontentutimuzhi_zuo_jian_xiu"
-    mode="row"
-    open_in="default"
-    max_videos="0"
-    placement="middle"
-    player_placement="bottom-right"
-    playlist="5Llar5">
+  <fw-embed-feed id="creative-seishi"
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="5Llar5"
+    mode="row" open_in="default" max_videos="0"
+    placement="middle" player_placement="bottom-right">
   </fw-embed-feed>
 
   <script>
-    // ジャンルボタン制御
     const genreButtons = document.querySelectorAll('.genre-tabs button');
     const industryTabs = document.getElementById('industry-tabs');
     const creativeTabs = document.getElementById('creative-tabs');
-    const industryFeeds = document.querySelectorAll('#industry-tabs button');
-    const creativeFeeds = document.querySelectorAll('#creative-tabs button');
-
-    // プレイリスト埋め込み要素取得
     const allFeeds = document.querySelectorAll('fw-embed-feed');
+    const industryButtons = industryTabs.querySelectorAll('button');
+    const creativeButtons = creativeTabs.querySelectorAll('button');
 
-    // 現在選択中のジャンルとフィードIDを管理
-    let currentGenre = 'industry';
-    let currentFeedId = 'industry-saiyo';
+    let currentFeed = 'industry-saiyo';
 
-    // ジャンル切替ボタン押下処理
-    genreButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const genre = btn.getAttribute('data-genre');
-        if (genre === currentGenre) return; // 同じなら何もしない
-
-        currentGenre = genre;
-
-        // ジャンルタブのactive切り替え
-        genreButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        // 表示切替
-        if (genre === 'industry') {
-          industryTabs.style.display = 'block';
-          creativeTabs.style.display = 'none';
-
-          // 業種ジャンルの最初のプレイリストを選択
-          currentFeedId = 'industry-saiyo';
-          activateFeed(currentFeedId);
-
-          // プレイリストタブも切り替え
-          industryFeeds.forEach(b => b.classList.remove('active'));
-          industryFeeds[0].classList.add('active');
-        } else {
-          industryTabs.style.display = 'none';
-          creativeTabs.style.display = 'block';
-
-          // クリエイティブジャンルの最初のプレイリストを選択
-          currentFeedId = 'creative-tateyoko';
-          activateFeed(currentFeedId);
-
-          creativeFeeds.forEach(b => b.classList.remove('active'));
-          creativeFeeds[0].classList.add('active');
-        }
-      });
-    });
-
-    // プレイリスト切替ボタン押下処理
-    function activateFeed(feedId) {
-      allFeeds.forEach(feed => {
-        if (feed.id === feedId) {
-          feed.classList.add('active');
-        } else {
-          feed.classList.remove('active');
-        }
-      });
+    function switchFeed(id) {
+      allFeeds.forEach(f => f.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
     }
 
-    industryFeeds.forEach(btn => {
+    function clearActive(buttons) {
+      buttons.forEach(b => b.classList.remove('active'));
+    }
+
+    // ジャンル切り替え
+    genreButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        const feedId = btn.getAttribute('data-feed');
-        if (feedId === currentFeedId) return;
-
-        currentFeedId = feedId;
-
-        // プレイリストタブのactive切り替え
-        industryFeeds.forEach(b => b.classList.remove('active'));
+        genreButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
-        activateFeed(feedId);
+        const genre = btn.dataset.genre;
+        if (genre === 'industry') {
+          industryTabs.style.display = 'flex';
+          creativeTabs.style.display = 'none';
+          switchFeed('industry-saiyo');
+          clearActive(industryButtons);
+          industryButtons[0].classList.add('active');
+        } else {
+          industryTabs.style.display = 'none';
+          creativeTabs.style.display = 'flex';
+          switchFeed('creative-tateyoko');
+          clearActive(creativeButtons);
+          creativeButtons[0].classList.add('active');
+        }
       });
     });
 
-    creativeFeeds.forEach(btn => {
+    // プレイリスト切り替え
+    [...industryButtons, ...creativeButtons].forEach(btn => {
       btn.addEventListener('click', () => {
-        const feedId = btn.getAttribute('data-feed');
-        if (feedId === currentFeedId) return;
-
-        currentFeedId = feedId;
-
-        creativeFeeds.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        activateFeed(feedId);
+        const id = btn.dataset.feed;
+        switchFeed(id);
+        if (industryTabs.style.display === 'flex') {
+          clearActive(industryButtons);
+          btn.classList.add('active');
+        } else {
+          clearActive(creativeButtons);
+          btn.classList.add('active');
+        }
       });
     });
   </script>
