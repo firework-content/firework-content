@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>Firework | 動画ギャラリー</title>
+  <title>Firework 動画ギャラリー</title>
   <script async src="//asset.fwcdn3.com/js/embed-feed.js"></script>
   <style>
     :root {
@@ -33,6 +33,33 @@
       color: #ccc;
       font-size: 1rem;
     }
-    .tabs, .playlist-tabs {
+    .tabs, .playlist-tabs, fw-embed-feed {
       display: none;
-      justify-
+    }
+    .tabs.show, .playlist-tabs.show {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 2rem 1rem 1rem;
+    }
+    fw-embed-feed.active {
+      display: block;
+      width: 100%;
+      max-width: 960px;
+      height: 600px;
+      margin: 2rem auto;
+    }
+    button {
+      background: var(--btn-bg);
+      color: var(--text-color);
+      border: 1px solid #333;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover, button.active {
+      background: var(--btn-hover);
+      border-color: va
