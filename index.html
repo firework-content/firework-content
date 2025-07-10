@@ -6,7 +6,7 @@
   <script async src="//asset.fwcdn3.com/js/embed-feed.js"></script>
   <style>
     :root {
-      --accent-color: #1E90FF; /* 青系アクセント。紫にするなら #9b59b6 */
+      --accent-color: #1E90FF;
       --bg-color: #000;
       --text-color: #fff;
       --btn-bg: #111;
@@ -29,7 +29,7 @@
       margin: 0 0 0.5rem 0;
     }
     p {
-      margin: 0;
+      margin: 0.5rem 0;
       color: #ccc;
       font-size: 1rem;
     }
@@ -64,6 +64,32 @@
     fw-embed-feed.active {
       display: block;
     }
+
+    /* パスワードセクション */
+    .password-section {
+      text-align: center;
+      margin: 2rem 1rem;
+    }
+    .password-section input {
+      padding: 0.6rem;
+      width: 200px;
+      border-radius: 4px;
+      border: 1px solid #444;
+      background: #111;
+      color: white;
+    }
+    .password-section button {
+      margin-left: 0.5rem;
+    }
+
+    #creative-tabs {
+      display: none;
+    }
+
+    #creative-section.locked .playlist-tabs,
+    #creative-section.locked fw-embed-feed {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
@@ -72,28 +98,43 @@
     <p>業種・形式別に参考事例をチェック</p>
   </header>
 
-  <div class="genre-tabs">
-    <button data-genre="industry" class="active">業種ごと</button>
-    <button data-genre="creative">クリエイティブ形式</button>
+  <!-- ▼ パスワード保護セクション -->
+  <div class="password-section">
+    <p><strong>Fireworkクリエイティブチームの制作実績を閲覧するにはパスワードが必要です</strong></p>
+    <input type="password" id="passwordInput" placeholder="パスワードを入力">
+    <button onclick="checkPassword()">閲覧</button>
+    <p id="passwordMessage" style="color: red; display: none;">パスワードが間違っています</p>
   </div>
 
+  <!-- ▼ ジャンル切替 -->
+  <div class="genre-tabs">
+    <button data-genre="industry" class="active">業種ごと</button>
+    <button data-genre="creative" id="creative-tab-btn" style="display:none;">クリエイティブ形式</button>
+  </div>
+
+  <!-- ▼ 業種プレイリストボタン -->
   <div class="playlist-tabs" id="industry-tabs">
     <button data-feed="industry-saiyo" class="active">採用</button>
     <button data-feed="industry-biyou">美容・ファッション</button>
     <button data-feed="industry-entame">エンタメ</button>
   </div>
 
-  <div class="playlist-tabs" id="creative-tabs" style="display: none;">
-    <button data-feed="creative-tateyoko" class="active">縦型＋横型</button>
-    <button data-feed="creative-live">ライブ切り抜き</button>
-    <button data-feed="creative-quiz">クイズ</button>
-    <button data-feed="creative-howto">How To</button>
-    <button data-feed="creative-animation">アニメーション</button>
-    <button data-feed="creative-seishi">静止画</button>
+  <!-- ▼ クリエイティブ形式ボタン -->
+  <div class="playlist-tabs" id="creative-tabs">
+    <div id="creative-section" class="locked">
+      <div class="playlist-tabs">
+        <button data-feed="creative-tateyoko" class="active">縦型＋横型</button>
+        <button data-feed="creative-live">ライブ切り抜き</button>
+        <button data-feed="creative-quiz">クイズ</button>
+        <button data-feed="creative-howto">How To</button>
+        <button data-feed="creative-animation">アニメーション</button>
+        <button data-feed="creative-seishi">静止画</button>
+      </div>
+    </div>
   </div>
 
-  <!-- ▼ Firework埋め込みエリア -->
-  <!-- 業種ごと -->
+  <!-- ▼ 動画プレイヤー -->
+  <!-- 業種 -->
   <fw-embed-feed id="industry-saiyo" class="active"
     channel="kontentutimuzhi_zuo_jian_xiu" playlist="oNLbQv"
     mode="row" open_in="default" max_videos="0"
@@ -112,41 +153,29 @@
     placement="middle" player_placement="bottom-right">
   </fw-embed-feed>
 
-  <!-- クリエイティブ形式ごと -->
+  <!-- クリエイティブ形式 -->
   <fw-embed-feed id="creative-tateyoko"
-    channel="kontentutimuzhi_zuo_jian_xiu" playlist="vrqPJg"
-    mode="row" open_in="default" max_videos="0"
-    placement="middle" player_placement="bottom-right">
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="vrqPJg">
   </fw-embed-feed>
 
   <fw-embed-feed id="creative-live"
-    channel="kontentutimuzhi_zuo_jian_xiu" playlist="5D39Jv"
-    mode="row" open_in="default" max_videos="0"
-    placement="middle" player_placement="bottom-right">
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="5D39Jv">
   </fw-embed-feed>
 
   <fw-embed-feed id="creative-quiz"
-    channel="kontentutimuzhi_zuo_jian_xiu" playlist="gkB10o"
-    mode="row" open_in="default" max_videos="0"
-    placement="middle" player_placement="bottom-right">
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="gkB10o">
   </fw-embed-feed>
 
   <fw-embed-feed id="creative-howto"
-    channel="kontentutimuzhi_zuo_jian_xiu" playlist="oyx1k5"
-    mode="row" open_in="default" max_videos="0"
-    placement="middle" player_placement="bottom-right">
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="oyx1k5">
   </fw-embed-feed>
 
   <fw-embed-feed id="creative-animation"
-    channel="kontentutimuzhi_zuo_jian_xiu" playlist="5xNzMg"
-    mode="row" open_in="default" max_videos="0"
-    placement="middle" player_placement="bottom-right">
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="5xNzMg">
   </fw-embed-feed>
 
   <fw-embed-feed id="creative-seishi"
-    channel="kontentutimuzhi_zuo_jian_xiu" playlist="5Llar5"
-    mode="row" open_in="default" max_videos="0"
-    placement="middle" player_placement="bottom-right">
+    channel="kontentutimuzhi_zuo_jian_xiu" playlist="5Llar5">
   </fw-embed-feed>
 
   <script>
@@ -155,7 +184,8 @@
     const creativeTabs = document.getElementById('creative-tabs');
     const allFeeds = document.querySelectorAll('fw-embed-feed');
     const industryButtons = industryTabs.querySelectorAll('button');
-    const creativeButtons = creativeTabs.querySelectorAll('button');
+    const creativeButtons = document.querySelectorAll('#creative-tabs button');
+    const creativeSection = document.getElementById("creative-section");
 
     let currentFeed = 'industry-saiyo';
 
@@ -168,7 +198,6 @@
       buttons.forEach(b => b.classList.remove('active'));
     }
 
-    // ジャンル切り替え
     genreButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         genreButtons.forEach(b => b.classList.remove('active'));
@@ -182,7 +211,7 @@
           industryButtons[0].classList.add('active');
         } else {
           industryTabs.style.display = 'none';
-          creativeTabs.style.display = 'flex';
+          creativeTabs.style.display = 'block';
           switchFeed('creative-tateyoko');
           clearActive(creativeButtons);
           creativeButtons[0].classList.add('active');
@@ -190,7 +219,6 @@
       });
     });
 
-    // プレイリスト切り替え
     [...industryButtons, ...creativeButtons].forEach(btn => {
       btn.addEventListener('click', () => {
         const id = btn.dataset.feed;
@@ -204,7 +232,19 @@
         }
       });
     });
+
+    // パスワードチェック
+    function checkPassword() {
+      const input = document.getElementById('passwordInput').value.trim();
+      const message = document.getElementById('passwordMessage');
+      if (input === 'firework') {
+        document.getElementById('creative-tab-btn').style.display = 'inline-block';
+        creativeSection.classList.remove('locked');
+        message.style.display = 'none';
+      } else {
+        message.style.display = 'block';
+      }
+    }
   </script>
 </body>
 </html>
-
