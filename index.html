@@ -99,6 +99,7 @@
       border-radius: 4px;
       padding: 0.5rem 1rem;
       cursor: pointer;
+      user-select: none;
     }
 
     button.tab-btn.active, button.tab-btn:hover {
@@ -236,7 +237,94 @@
       const passwordMessage = document.getElementById('passwordMessage');
       const checkBtn = document.getElementById('checkPasswordBtn');
 
-      function showFeed(id) {
-       
+      // 初期非表示
+      genreTabs.style.display = 'none';
+      industryTabs.style.display = 'none';
+      creativeTabs.style.display = 'none';
+      allFeeds.forEach(feed => feed.style.display = 'none');
+      passwordMessage.style.display = 'none';
 
-      
+      const correctPassword = 'firework'; // ここでパスワード設定
+
+      checkBtn.addEventListener('click', () => {
+        const entered = passwordInput.value.trim();
+        if (entered === correctPassword) {
+          passwordMessage.style.display = 'none';
+
+          // パスワード成功後、タブと最初の動画表示
+          genreTabs.style.display = 'flex';
+          showGenre('industry');
+
+          // 入力欄とボタンを無効化（変更したければコメントアウト）
+          passwordInput.disabled = true;
+          checkBtn.disabled = true;
+        } else {
+          passwordMessage.style.display = 'block';
+        }
+      });
+
+      // 業種 or クリエイティブ形式 タブ切替
+      genreTabs.querySelectorAll('button.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if(btn.classList.contains('active')) return; // すでに選択中
+
+          // active切り替え
+          genreTabs.querySelector('button.active').classList.remove('active');
+          btn.classList.add('active');
+
+          // 表示切替
+          if(btn.dataset.genre === 'industry'){
+            showGenre('industry');
+          } else {
+            showGenre('creative');
+          }
+        });
+      });
+
+      // playlist-tabs のタブ切替
+      industryTabs.querySelectorAll('button.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if(btn.classList.contains('active')) return;
+          industryTabs.querySelector('button.active').classList.remove('active');
+          btn.classList.add('active');
+          showFeed(btn.dataset.feed);
+        });
+      });
+      creativeTabs.querySelectorAll('button.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if(btn.classList.contains('active')) return;
+          creativeTabs.querySelector('button.active').classList.remove('active');
+          btn.classList.add('active');
+          showFeed(btn.dataset.feed);
+        });
+      });
+
+      // ジャンルに合わせて playlist-tabs と最初の動画を表示
+      function showGenre(genre){
+        if(genre === 'industry'){
+          industryTabs.style.display = 'flex';
+          creativeTabs.style.display = 'none';
+          industryTabs.querySelector('button.active')?.click(); // 最初のactiveを押す
+        } else {
+          industryTabs.style.display = 'none';
+          creativeTabs.style.display = 'flex';
+          creativeTabs.querySelector('button.active')?.click();
+        }
+      }
+
+      // 動画切り替え
+      function showFeed(id){
+        allFeeds.forEach(feed => {
+          if(feed.id === id){
+            feed.style.display = 'block';
+            feed.classList.add('active');
+          } else {
+            feed.style.display = 'none';
+            feed.classList.remove('active');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
