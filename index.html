@@ -29,29 +29,38 @@
 
     h1 {
       font-size: 2rem;
-      margin: 0 0 0.5rem;
+      margin-bottom: 0.5rem;
     }
 
     .password-section {
       text-align: center;
-      margin: 2rem;
+      margin: 2rem auto;
+      padding: 2rem;
+      border: 2px solid var(--accent-color);
+      border-radius: 8px;
+      max-width: 500px;
+      background-color: #111;
     }
 
     .password-section input {
       padding: 0.6rem;
       border-radius: 4px;
       border: 1px solid #555;
-      background-color: #111;
+      background-color: #000;
       color: #fff;
+      font-size: 1rem;
+      width: 60%;
     }
 
     .password-section button {
       margin-left: 0.5rem;
-      padding: 0.6rem 1rem;
+      padding: 0.6rem 1.2rem;
       border: none;
       border-radius: 4px;
       background-color: var(--btn-bg);
       color: var(--text-color);
+      font-weight: bold;
+      font-size: 1rem;
       cursor: pointer;
     }
 
@@ -63,6 +72,7 @@
       color: red;
       margin-top: 0.5rem;
       display: none;
+      font-weight: bold;
     }
 
     .tabs, .playlist-tabs {
@@ -149,34 +159,9 @@
 
   <div class="password-section">
     <input type="password" id="passwordInput" placeholder="パスワードを入力">
-    <button onclick="checkPassword()">閲覧</button>
+    <button id="checkPasswordBtn">閲覧</button>
     <div id="passwordMessage">パスワードが間違っています</div>
   </div>
-
-  <section class="profile-section">
-    <h2>Creativeメンバー紹介</h2>
-    <p style="color: #ccc;">豊富な経験を持ち合わせた弊社クリエイティブ・ディレクターがサポート致します</p>
-    <div class="profiles">
-      <div class="profile">
-        <h3>関井 奈津（Natsu Sekii）</h3>
-        <p><strong>出身：</strong>大阪</p>
-        <p><strong>趣味：</strong>旅行</p>
-        <p>デジタルアドバタイジングコンソーシアムにて、ストラテジックプランナーとしてメディアバイイングや広告運用を担当。2021年より現職にて、Fireworkを活用したショート動画制作やライブ配信のプロデュースを担当。</p>
-      </div>
-      <div class="profile">
-        <h3>石島 慎也（Shinya Ishijima）</h3>
-        <p><strong>出身：</strong>神奈川県</p>
-        <p><strong>趣味：</strong>サウナ・カラオケ・サッカー観戦</p>
-        <p>テレビ番組制作会社を経てCandeeに入社し、ライブ配信やライブコマースの番組制作・立ち上げを担当。その後BitStarにて企業YouTubeチャンネルの制作・運用支援を経験。2021年より現職にて、Fireworkを活用した動画マーケティングの戦略設計・コンテンツ制作・コンサルティングに従事。</p>
-      </div>
-      <div class="profile">
-        <h3>森田 太陽（Morita Takaharu）</h3>
-        <p><strong>出身：</strong>福岡県</p>
-        <p><strong>趣味：</strong>サウナ・カラオケ・サッカー観戦</p>
-        <p>動画クリエイターとして、「落合博満のオレ流チャンネル」「河北裕介公式チャンネル」などYouTubeコンテンツを中心に制作を担当。Firework Japanではクリエイティブディレクターとしてショート動画の制作、ライブ配信のプロデュースに携わる。</p>
-      </div>
-    </div>
-  </section>
 
   <div class="tabs" id="genre-tabs">
     <button class="tab-btn active" data-genre="industry">業種ごと</button>
@@ -198,10 +183,10 @@
     <button class="tab-btn" data-feed="creative-seishi">静止画</button>
   </div>
 
+  <!-- 動画プレイヤー -->
   <fw-embed-feed id="industry-saiyo" channel="kontentutimuzhi_zuo_jian_xiu" playlist="oNLbQv" mode="row" open_in="default" placement="middle" player_placement="bottom-right"></fw-embed-feed>
   <fw-embed-feed id="industry-biyou" channel="kontentutimuzhi_zuo_jian_xiu" playlist="g1a7kg" mode="row" open_in="default" placement="middle" player_placement="bottom-right"></fw-embed-feed>
   <fw-embed-feed id="industry-entame" channel="kontentutimuzhi_zuo_jian_xiu" playlist="oBAaR5" mode="row" open_in="default" placement="middle" player_placement="bottom-right"></fw-embed-feed>
-
   <fw-embed-feed id="creative-tateyoko" channel="kontentutimuzhi_zuo_jian_xiu" playlist="vrqPJg"></fw-embed-feed>
   <fw-embed-feed id="creative-live" channel="kontentutimuzhi_zuo_jian_xiu" playlist="5D39Jv"></fw-embed-feed>
   <fw-embed-feed id="creative-quiz" channel="kontentutimuzhi_zuo_jian_xiu" playlist="gkB10o"></fw-embed-feed>
@@ -209,35 +194,59 @@
   <fw-embed-feed id="creative-animation" channel="kontentutimuzhi_zuo_jian_xiu" playlist="5xNzMg"></fw-embed-feed>
   <fw-embed-feed id="creative-seishi" channel="kontentutimuzhi_zuo_jian_xiu" playlist="5Llar5"></fw-embed-feed>
 
+  <section class="profile-section">
+    <h2>Creativeメンバー紹介</h2>
+    <p style="color: #ccc;">豊富な経験を持ち合わせた弊社クリエイティブ・ディレクターがサポート致します</p>
+    <div class="profiles">
+      <div class="profile">
+        <h3>関井 奈津（Natsu Sekii）</h3>
+        <p><strong>出身：</strong>大阪</p>
+        <p><strong>趣味：</strong>旅行</p>
+        <p>デジタルアドバタイジングコンソーシアムにて、ストラテジックプランナーとして広告運用を担当。2021年よりFireworkでショート動画やライブ配信をプロデュース。</p>
+      </div>
+      <div class="profile">
+        <h3>石島 慎也（Shinya Ishijima）</h3>
+        <p><strong>出身：</strong>神奈川県</p>
+        <p><strong>趣味：</strong>サウナ・カラオケ・サッカー観戦</p>
+        <p>テレビ番組制作、ライブ配信、企業YouTubeチャンネル運用などを経て、Fireworkで動画戦略と制作に従事。</p>
+      </div>
+      <div class="profile">
+        <h3>森田 太陽（Morita Takaharu）</h3>
+        <p><strong>出身：</strong>福岡県</p>
+        <p><strong>趣味：</strong>サウナ・カラオケ・サッカー観戦</p>
+        <p>YouTubeコンテンツの制作を中心に活動し、Fireworkでは動画制作とライブ配信を担当。</p>
+      </div>
+    </div>
+  </section>
+
   <script>
     const genreTabs = document.getElementById('genre-tabs');
     const industryTabs = document.getElementById('industry-tabs');
     const creativeTabs = document.getElementById('creative-tabs');
     const allFeeds = document.querySelectorAll('fw-embed-feed');
 
-    function checkPassword() {
-      const input = document.getElementById('passwordInput').value.trim();
-      const msg = document.getElementById('passwordMessage');
-      if (input === 'firework') {
-        genreTabs.classList.add('show');
-        industryTabs.classList.add('show');
-        showFeed('industry-saiyo');
-        msg.style.display = 'none';
-      } else {
-        msg.style.display = 'block';
-      }
-    }
-
     function showFeed(id) {
       allFeeds.forEach(feed => feed.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
 
+    document.getElementById('checkPasswordBtn').addEventListener('click', function () {
+      const input = document.getElementById('passwordInput').value.trim();
+      const msg = document.getElementById('passwordMessage');
+      if (input === 'firework') {
+        msg.style.display = 'none';
+        genreTabs.classList.add('show');
+        industryTabs.classList.add('show');
+        showFeed('industry-saiyo');
+      } else {
+        msg.style.display = 'block';
+      }
+    });
+
     document.querySelectorAll('#genre-tabs .tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('#genre-tabs .tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
         const genre = btn.getAttribute('data-genre');
         if (genre === 'industry') {
           industryTabs.classList.add('show');
@@ -251,7 +260,7 @@
       });
     });
 
-    [...document.querySelectorAll('.playlist-tabs .tab-btn')].forEach(btn => {
+    document.querySelectorAll('.playlist-tabs .tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const feedId = btn.getAttribute('data-feed');
         btn.closest('.playlist-tabs').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
