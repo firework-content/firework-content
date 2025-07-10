@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Firework 動画ギャラリー</title>
-  <script async src="//asset.fwcdn3.com/js/embed-feed.js"></script>
+  <script async src="https://asset.fwcdn3.com/js/embed-feed.js"></script>
   <style>
     :root {
-      --accent-color: #7B61FF; /* 紫か青 */
+      --accent-color: #7B61FF;
       --bg-color: #000;
       --text-color: #fff;
       --btn-bg: #111;
@@ -100,14 +100,77 @@
     fw-embed-feed.active {
       display: block;
     }
+
+    .profile-section {
+      background-color: #111;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .profile-section h2 {
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .profiles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .profile {
+      background-color: #222;
+      border: 1px solid var(--accent-color);
+      border-radius: 8px;
+      padding: 1rem;
+      width: 280px;
+      text-align: left;
+    }
+
+    .profile h3 {
+      color: var(--accent-color);
+      margin-top: 0;
+    }
+
+    .profile p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
   </style>
 </head>
 <body>
-
   <header>
     <h1>Firework 動画ギャラリー</h1>
     <p>パスワードを入力すると、動画事例を見ることができます。</p>
   </header>
+
+  <section class="profile-section">
+    <h2>Creativeメンバー紹介</h2>
+    <p style="color: #ccc;">豊富な経験を持ち合わせた弊社クリエイティブ・ディレクターがサポート致します</p>
+    <div class="profiles">
+      <div class="profile">
+        <h3>関井 奈津（Natsu Sekii）</h3>
+        <p><strong>出身：</strong>大阪</p>
+        <p><strong>趣味：</strong>旅行</p>
+        <p>デジタルアドバタイジングコンソーシアムにて、ストラテジックプランナーとしてメディアバイイングや広告運用を担当。2021年より現職にて、Fireworkを活用したショート動画制作やライブ配信のプロデュースを担当。</p>
+      </div>
+      <div class="profile">
+        <h3>石島 慎也（Shinya Ishijima）</h3>
+        <p><strong>出身：</strong>神奈川県</p>
+        <p><strong>趣味：</strong>サウナ・カラオケ・サッカー観戦</p>
+        <p>テレビ番組制作会社を経てCandeeに入社し、ライブ配信やライブコマースの番組制作・立ち上げを担当。その後BitStarにて企業YouTubeチャンネルの制作・運用支援を経験。2021年より現職にて、Fireworkを活用した動画マーケティングの戦略設計・コンテンツ制作・コンサルティングに従事。</p>
+      </div>
+      <div class="profile">
+        <h3>森田 太陽（Morita Takaharu）</h3>
+        <p><strong>出身：</strong>福岡県</p>
+        <p><strong>趣味：</strong>サウナ・カラオケ・サッカー観戦</p>
+        <p>動画クリエイターとして、「落合博満のオレ流チャンネル」「河北裕介公式チャンネル」などYouTubeコンテンツを中心に制作を担当。Firework Japanではクリエイティブディレクターとしてショート動画の制作、ライブ配信のプロデュースに携わる。</p>
+      </div>
+    </div>
+  </section>
 
   <div class="password-section">
     <input type="password" id="passwordInput" placeholder="パスワードを入力">
@@ -135,7 +198,6 @@
     <button class="tab-btn" data-feed="creative-seishi">静止画</button>
   </div>
 
-  <!-- Firework動画プレイヤーたち -->
   <fw-embed-feed id="industry-saiyo" channel="kontentutimuzhi_zuo_jian_xiu" playlist="oNLbQv" mode="row" open_in="default" placement="middle" player_placement="bottom-right"></fw-embed-feed>
   <fw-embed-feed id="industry-biyou" channel="kontentutimuzhi_zuo_jian_xiu" playlist="g1a7kg" mode="row" open_in="default" placement="middle" player_placement="bottom-right"></fw-embed-feed>
   <fw-embed-feed id="industry-entame" channel="kontentutimuzhi_zuo_jian_xiu" playlist="oBAaR5" mode="row" open_in="default" placement="middle" player_placement="bottom-right"></fw-embed-feed>
