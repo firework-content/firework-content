@@ -214,4 +214,79 @@
     <button class="tab-btn" data-feed="creative-seishi">静止画</button>
   </div>
 
-  <fw-embed-feed id="industry-saiyo" channel="kontentutimuzhi_zuo_jian_xiu" playlist="oNLbQv" mode="row" open_in="default" placement="middle" player_placement="bottom-right"></fw-embed-f_
+  <fw-embed-feed id="industry-saiyo" channel="kontentutimuzhi_zuo_jian_xiu" playlist="oNLbQv" mode="row" open_in="default" placement="middle" player_placement="bottom-right"></fw-embed-feed>
+  <fw-embed-feed id="industry-biyou" channel="kontentutimuzhi_zuo_jian_xiu" playlist="g1a7kg" mode="row" open_in="default" placement="middle" player_placement="bottom-right"></fw-embed-feed>
+  <fw-embed-feed id="industry-entame" channel="kontentutimuzhi_zuo_jian_xiu" playlist="oBAaR5" mode="row" open_in="default" placement="middle" player_placement="bottom-right"></fw-embed-feed>
+
+  <fw-embed-feed id="creative-tateyoko" channel="kontentutimuzhi_zuo_jian_xiu" playlist="vrqPJg"></fw-embed-feed>
+  <fw-embed-feed id="creative-live" channel="kontentutimuzhi_zuo_jian_xiu" playlist="5D39Jv"></fw-embed-feed>
+  <fw-embed-feed id="creative-quiz" channel="kontentutimuzhi_zuo_jian_xiu" playlist="gkB10o"></fw-embed-feed>
+  <fw-embed-feed id="creative-howto" channel="kontentutimuzhi_zuo_jian_xiu" playlist="oyx1k5"></fw-embed-feed>
+  <fw-embed-feed id="creative-animation" channel="kontentutimuzhi_zuo_jian_xiu" playlist="5xNzMg"></fw-embed-feed>
+  <fw-embed-feed id="creative-seishi" channel="kontentutimuzhi_zuo_jian_xiu" playlist="5Llar5"></fw-embed-feed>
+
+  <script>
+    const genreTabs = document.getElementById('genre-tabs');
+    const industryTabs = document.getElementById('industry-tabs');
+    const creativeTabs = document.getElementById('creative-tabs');
+    const allFeeds = document.querySelectorAll('fw-embed-feed');
+
+    function showFeed(id) {
+      allFeeds.forEach(feed => feed.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    document.getElementById('checkPasswordBtn').addEventListener('click', function () {
+      const input = document.getElementById('passwordInput').value.trim();
+      const msg = document.getElementById('passwordMessage');
+      if (input === 'firework') {
+        msg.style.display = 'none';
+        genreTabs.classList.add('show');
+        industryTabs.classList.add('show');
+        creativeTabs.classList.remove('show');
+        showFeed('industry-saiyo');
+        // ページ内のタブボタンも初期化
+        document.querySelectorAll('#genre-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('#genre-tabs .tab-btn[data-genre="industry"]').classList.add('active');
+        document.querySelectorAll('#industry-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('#industry-tabs .tab-btn[data-feed="industry-saiyo"]').classList.add('active');
+      } else {
+        msg.style.display = 'block';
+      }
+    });
+
+    document.querySelectorAll('#genre-tabs .tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#genre-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const genre = btn.getAttribute('data-genre');
+        if (genre === 'industry') {
+          industryTabs.classList.add('show');
+          creativeTabs.classList.remove('show');
+          showFeed('industry-saiyo');
+          // 初期タブもリセット
+          document.querySelectorAll('#industry-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelector('#industry-tabs .tab-btn[data-feed="industry-saiyo"]').classList.add('active');
+        } else {
+          creativeTabs.classList.add('show');
+          industryTabs.classList.remove('show');
+          showFeed('creative-tateyoko');
+          // 初期タブもリセット
+          document.querySelectorAll('#creative-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelector('#creative-tabs .tab-btn[data-feed="creative-tateyoko"]').classList.add('active');
+        }
+      });
+    });
+
+    [...document.querySelectorAll('.playlist-tabs .tab-btn')].forEach(btn => {
+      btn.addEventListener('click', () => {
+        const feedId = btn.getAttribute('data-feed');
+        btn.closest('.playlist-tabs').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        showFeed(feedId);
+      });
+    });
+  </script>
+</body>
+</html>
