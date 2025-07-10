@@ -2,12 +2,12 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>Firework 業種別動画参考サイト</title>
+  <title>Firework 業種＆クリエイティブ形式 動画参考サイト</title>
   <script async src="//asset.fwcdn3.com/js/embed-feed.js"></script>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      max-width: 900px;
+      max-width: 960px;
       margin: auto;
       padding: 2rem;
     }
@@ -15,26 +15,46 @@
       color: #e6007e;
       margin-bottom: 1rem;
     }
-    .btn-group {
-      margin-bottom: 2rem;
+    /* 上段ジャンル切替ボタン */
+    .genre-tabs {
+      margin-bottom: 1.5rem;
     }
-    button {
+    .genre-tabs button {
       background: #e6007e;
       border: none;
       color: white;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 1.2rem;
       margin-right: 0.5rem;
       font-weight: bold;
       cursor: pointer;
       border-radius: 4px;
     }
-    button.active {
+    .genre-tabs button.active {
       background: #b00066;
     }
+    /* 中段 プレイリスト切替ボタン */
+    .playlist-tabs {
+      margin-bottom: 2rem;
+    }
+    .playlist-tabs button {
+      background: #0078d4;
+      border: none;
+      color: white;
+      padding: 0.4rem 1rem;
+      margin-right: 0.4rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    .playlist-tabs button.active {
+      background: #005a9e;
+    }
+    /* Firework埋め込みエリア */
     fw-embed-feed {
       display: none;
       width: 100%;
-      height: 600px; /* 高さは必要に応じて調整 */
+      height: 600px;
       margin-bottom: 2rem;
     }
     fw-embed-feed.active {
@@ -43,92 +63,226 @@
   </style>
 </head>
 <body>
-  <h1>Firework 業種別動画参考サイト</h1>
-  <p>見たい業種のボタンを押してください。</p>
+  <h1>Firework 業種＆クリエイティブ形式 動画参考サイト</h1>
+  <p>上のジャンルを選択後、見たい動画タイトルのボタンを押してください。</p>
 
-  <div class="btn-group">
-    <button data-target="cosmetics" class="active">コスメ</button>
-    <button data-target="apparel">アパレル</button>
-    <button data-target="retail">リテール</button>
-    <button data-target="auto">自動車販売店</button>
-    <button data-target="creative">クリエイティブチーム動画</button>
+  <!-- ジャンル切替（上段） -->
+  <div class="genre-tabs">
+    <button data-genre="industry" class="active">業種ごと</button>
+    <button data-genre="creative">クリエイティブ形式ごと</button>
   </div>
 
+  <!-- 業種ごとプレイリスト切替 -->
+  <div class="playlist-tabs" id="industry-tabs">
+    <button data-feed="industry-saiyo" class="active">採用</button>
+    <button data-feed="industry-biyou">美容・ファッション</button>
+    <button data-feed="industry-entame">エンタメ</button>
+  </div>
+
+  <!-- クリエイティブ形式ごとプレイリスト切替 -->
+  <div class="playlist-tabs" id="creative-tabs" style="display:none;">
+    <button data-feed="creative-tateyoko" class="active">縦型フレーム＋横型動画</button>
+    <button data-feed="creative-live">ライブ配信切り抜き</button>
+    <button data-feed="creative-quiz">クイズ</button>
+    <button data-feed="creative-howto">How To</button>
+    <button data-feed="creative-animation">アニメーション</button>
+    <button data-feed="creative-seishi">静止画</button>
+  </div>
+
+  <!-- 動画埋め込みエリア -->
+  <!-- 業種ごと -->
   <fw-embed-feed
-    id="cosmetics"
+    id="industry-saiyo"
     class="active"
-    channel="channel_cosmetics"
+    channel="kontentutimuzhi_zuo_jian_xiu"
     mode="row"
     open_in="default"
     max_videos="0"
     placement="middle"
     player_placement="bottom-right"
-    playlist="playlist_cosmetics">
+    playlist="oNLbQv">
   </fw-embed-feed>
 
   <fw-embed-feed
-    id="apparel"
-    channel="channel_apparel"
+    id="industry-biyou"
+    channel="kontentutimuzhi_zuo_jian_xiu"
     mode="row"
     open_in="default"
     max_videos="0"
     placement="middle"
     player_placement="bottom-right"
-    playlist="playlist_apparel">
+    playlist="g1a7kg">
   </fw-embed-feed>
 
   <fw-embed-feed
-    id="retail"
-    channel="channel_retail"
+    id="industry-entame"
+    channel="kontentutimuzhi_zuo_jian_xiu"
     mode="row"
     open_in="default"
     max_videos="0"
     placement="middle"
     player_placement="bottom-right"
-    playlist="playlist_retail">
+    playlist="oBAaR5">
+  </fw-embed-feed>
+
+  <!-- クリエイティブ形式ごと -->
+  <fw-embed-feed
+    id="creative-tateyoko"
+    class=""
+    channel="kontentutimuzhi_zuo_jian_xiu"
+    mode="row"
+    open_in="default"
+    max_videos="0"
+    placement="middle"
+    player_placement="bottom-right"
+    playlist="vrqPJg">
   </fw-embed-feed>
 
   <fw-embed-feed
-    id="auto"
-    channel="channel_auto"
+    id="creative-live"
+    channel="kontentutimuzhi_zuo_jian_xiu"
     mode="row"
     open_in="default"
     max_videos="0"
     placement="middle"
     player_placement="bottom-right"
-    playlist="playlist_auto">
+    playlist="5D39Jv">
   </fw-embed-feed>
 
   <fw-embed-feed
-    id="creative"
-    channel="channel_creative"
+    id="creative-quiz"
+    channel="kontentutimuzhi_zuo_jian_xiu"
     mode="row"
     open_in="default"
     max_videos="0"
     placement="middle"
     player_placement="bottom-right"
-    playlist="playlist_creative">
+    playlist="gkB10o">
+  </fw-embed-feed>
+
+  <fw-embed-feed
+    id="creative-howto"
+    channel="kontentutimuzhi_zuo_jian_xiu"
+    mode="row"
+    open_in="default"
+    max_videos="0"
+    placement="middle"
+    player_placement="bottom-right"
+    playlist="oyx1k5">
+  </fw-embed-feed>
+
+  <fw-embed-feed
+    id="creative-animation"
+    channel="kontentutimuzhi_zuo_jian_xiu"
+    mode="row"
+    open_in="default"
+    max_videos="0"
+    placement="middle"
+    player_placement="bottom-right"
+    playlist="5xNzMg">
+  </fw-embed-feed>
+
+  <fw-embed-feed
+    id="creative-seishi"
+    channel="kontentutimuzhi_zuo_jian_xiu"
+    mode="row"
+    open_in="default"
+    max_videos="0"
+    placement="middle"
+    player_placement="bottom-right"
+    playlist="5Llar5">
   </fw-embed-feed>
 
   <script>
-    const buttons = document.querySelectorAll('.btn-group button');
-    const feeds = document.querySelectorAll('fw-embed-feed');
+    // ジャンルボタン制御
+    const genreButtons = document.querySelectorAll('.genre-tabs button');
+    const industryTabs = document.getElementById('industry-tabs');
+    const creativeTabs = document.getElementById('creative-tabs');
+    const industryFeeds = document.querySelectorAll('#industry-tabs button');
+    const creativeFeeds = document.querySelectorAll('#creative-tabs button');
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        // ボタンのactive切り替え
-        buttons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+    // プレイリスト埋め込み要素取得
+    const allFeeds = document.querySelectorAll('fw-embed-feed');
 
-        // 対応するfw-embed-feedの表示切替
-        const targetId = button.getAttribute('data-target');
-        feeds.forEach(feed => {
-          if(feed.id === targetId) {
-            feed.classList.add('active');
-          } else {
-            feed.classList.remove('active');
-          }
-        });
+    // 現在選択中のジャンルとフィードIDを管理
+    let currentGenre = 'industry';
+    let currentFeedId = 'industry-saiyo';
+
+    // ジャンル切替ボタン押下処理
+    genreButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const genre = btn.getAttribute('data-genre');
+        if (genre === currentGenre) return; // 同じなら何もしない
+
+        currentGenre = genre;
+
+        // ジャンルタブのactive切り替え
+        genreButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // 表示切替
+        if (genre === 'industry') {
+          industryTabs.style.display = 'block';
+          creativeTabs.style.display = 'none';
+
+          // 業種ジャンルの最初のプレイリストを選択
+          currentFeedId = 'industry-saiyo';
+          activateFeed(currentFeedId);
+
+          // プレイリストタブも切り替え
+          industryFeeds.forEach(b => b.classList.remove('active'));
+          industryFeeds[0].classList.add('active');
+        } else {
+          industryTabs.style.display = 'none';
+          creativeTabs.style.display = 'block';
+
+          // クリエイティブジャンルの最初のプレイリストを選択
+          currentFeedId = 'creative-tateyoko';
+          activateFeed(currentFeedId);
+
+          creativeFeeds.forEach(b => b.classList.remove('active'));
+          creativeFeeds[0].classList.add('active');
+        }
+      });
+    });
+
+    // プレイリスト切替ボタン押下処理
+    function activateFeed(feedId) {
+      allFeeds.forEach(feed => {
+        if (feed.id === feedId) {
+          feed.classList.add('active');
+        } else {
+          feed.classList.remove('active');
+        }
+      });
+    }
+
+    industryFeeds.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const feedId = btn.getAttribute('data-feed');
+        if (feedId === currentFeedId) return;
+
+        currentFeedId = feedId;
+
+        // プレイリストタブのactive切り替え
+        industryFeeds.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        activateFeed(feedId);
+      });
+    });
+
+    creativeFeeds.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const feedId = btn.getAttribute('data-feed');
+        if (feedId === currentFeedId) return;
+
+        currentFeedId = feedId;
+
+        creativeFeeds.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        activateFeed(feedId);
       });
     });
   </script>
