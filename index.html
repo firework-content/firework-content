@@ -41,7 +41,6 @@
       text-align: center;
       margin: 2rem auto;
       padding: 2rem;
-      border: 2px solid var(--accent-color);
       border-radius: 8px;
       max-width: 500px;
       background-color: #111;
@@ -50,11 +49,12 @@
     .password-section input {
       padding: 0.6rem;
       border-radius: 4px;
-      border: 1px solid #555;
-      background-color: #000;
-      color: #fff;
+      border: none;
+      background-color: #fff;
+      color: #000;
       font-size: 1rem;
       width: 60%;
+      box-sizing: border-box;
     }
 
     .password-section button {
@@ -230,63 +230,9 @@
     const industryTabs = document.getElementById('industry-tabs');
     const creativeTabs = document.getElementById('creative-tabs');
     const allFeeds = document.querySelectorAll('fw-embed-feed');
+    const passwordInput = document.getElementById('passwordInput');
+    const passwordMessage = document.getElementById('passwordMessage');
 
     function showFeed(id) {
       allFeeds.forEach(feed => feed.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-
-    document.getElementById('checkPasswordBtn').addEventListener('click', function () {
-      const input = document.getElementById('passwordInput').value.trim();
-      const msg = document.getElementById('passwordMessage');
-      if (input === 'firework') {
-        msg.style.display = 'none';
-        genreTabs.classList.add('show');
-        industryTabs.classList.add('show');
-        creativeTabs.classList.remove('show');
-        showFeed('industry-saiyo');
-        // ページ内のタブボタンも初期化
-        document.querySelectorAll('#genre-tabs .tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelector('#genre-tabs .tab-btn[data-genre="industry"]').classList.add('active');
-        document.querySelectorAll('#industry-tabs .tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelector('#industry-tabs .tab-btn[data-feed="industry-saiyo"]').classList.add('active');
-      } else {
-        msg.style.display = 'block';
-      }
-    });
-
-    document.querySelectorAll('#genre-tabs .tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#genre-tabs .tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const genre = btn.getAttribute('data-genre');
-        if (genre === 'industry') {
-          industryTabs.classList.add('show');
-          creativeTabs.classList.remove('show');
-          showFeed('industry-saiyo');
-          // 初期タブもリセット
-          document.querySelectorAll('#industry-tabs .tab-btn').forEach(b => b.classList.remove('active'));
-          document.querySelector('#industry-tabs .tab-btn[data-feed="industry-saiyo"]').classList.add('active');
-        } else {
-          creativeTabs.classList.add('show');
-          industryTabs.classList.remove('show');
-          showFeed('creative-tateyoko');
-          // 初期タブもリセット
-          document.querySelectorAll('#creative-tabs .tab-btn').forEach(b => b.classList.remove('active'));
-          document.querySelector('#creative-tabs .tab-btn[data-feed="creative-tateyoko"]').classList.add('active');
-        }
-      });
-    });
-
-    [...document.querySelectorAll('.playlist-tabs .tab-btn')].forEach(btn => {
-      btn.addEventListener('click', () => {
-        const feedId = btn.getAttribute('data-feed');
-        btn.closest('.playlist-tabs').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        showFeed(feedId);
-      });
-    });
-  </script>
-</body>
-</html>
+      document.getElementById(id).classList.add
