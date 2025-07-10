@@ -120,6 +120,7 @@
       background-color: #111;
       padding: 2rem 1rem;
       text-align: center;
+      margin-top: 4rem;
     }
 
     .profile-section h2 {
@@ -169,31 +170,6 @@
     <div id="passwordMessage">パスワードが間違っています</div>
   </div>
 
-  <section class="profile-section">
-    <h2>Creativeメンバー紹介</h2>
-    <p style="color: #ccc;">豊富な経験を持ち合わせた弊社クリエイティブ・ディレクターがサポート致します</p>
-    <div class="profiles">
-      <div class="profile">
-        <h3>関井 奈津（Natsu Sekii）</h3>
-        <p><strong>出身：</strong>大阪</p>
-        <p><strong>趣味：</strong>旅行</p>
-        <p>デジタルアドバタイジングコンソーシアムにて、ストラテジックプランナーとしてメディアバイイングや広告運用を担当。2021年より現職にて、Fireworkを活用したショート動画制作やライブ配信のプロデュースを担当。</p>
-      </div>
-      <div class="profile">
-        <h3>石島 慎也（Shinya Ishijima）</h3>
-        <p><strong>出身：</strong>神奈川県</p>
-        <p><strong>趣味：</strong>サウナ・カラオケ・サッカー観戦</p>
-        <p>テレビ番組制作会社を経てCandeeに入社し、ライブ配信やライブコマースの番組制作・立ち上げを担当。その後BitStarにて企業YouTubeチャンネルの制作・運用支援を経験。2021年より現職にて、Fireworkを活用した動画マーケティングの戦略設計・コンテンツ制作・コンサルティングに従事。</p>
-      </div>
-      <div class="profile">
-        <h3>森田 太陽（Morita Takaharu）</h3>
-        <p><strong>出身：</strong>福岡県</p>
-        <p><strong>趣味：</strong>サウナ・カラオケ・サッカー観戦</p>
-        <p>動画クリエイターとして、「落合博満のオレ流チャンネル」「河北裕介公式チャンネル」などYouTubeコンテンツを中心に制作を担当。Firework Japanではクリエイティブディレクターとしてショート動画の制作、ライブ配信のプロデュースに携わる。</p>
-      </div>
-    </div>
-  </section>
-
   <div class="tabs" id="genre-tabs">
     <button class="tab-btn active" data-genre="industry">業種ごと</button>
     <button class="tab-btn" data-genre="creative">クリエイティブ形式</button>
@@ -225,6 +201,31 @@
   <fw-embed-feed id="creative-animation" channel="kontentutimuzhi_zuo_jian_xiu" playlist="5xNzMg"></fw-embed-feed>
   <fw-embed-feed id="creative-seishi" channel="kontentutimuzhi_zuo_jian_xiu" playlist="5Llar5"></fw-embed-feed>
 
+  <section class="profile-section">
+    <h2>Creativeメンバー紹介</h2>
+    <p style="color: #ccc;">豊富な経験を持ち合わせた弊社クリエイティブ・ディレクターがサポート致します</p>
+    <div class="profiles">
+      <div class="profile">
+        <h3>関井 奈津（Natsu Sekii）</h3>
+        <p><strong>出身：</strong>大阪</p>
+        <p><strong>趣味：</strong>旅行</p>
+        <p>デジタルアドバタイジングコンソーシアムにて、ストラテジックプランナーとしてメディアバイイングや広告運用を担当。2021年より現職にて、Fireworkを活用したショート動画制作やライブ配信のプロデュースを担当。</p>
+      </div>
+      <div class="profile">
+        <h3>石島 慎也（Shinya Ishijima）</h3>
+        <p><strong>出身：</strong>神奈川県</p>
+        <p><strong>趣味：</strong>サウナ・カラオケ・サッカー観戦</p>
+        <p>テレビ番組制作会社を経てCandeeに入社し、ライブ配信やライブコマースの番組制作・立ち上げを担当。その後BitStarにて企業YouTubeチャンネルの制作・運用支援を経験。2021年より現職にて、Fireworkを活用した動画マーケティングの戦略設計・コンテンツ制作・コンサルティングに従事。</p>
+      </div>
+      <div class="profile">
+        <h3>森田 太陽（Morita Takaharu）</h3>
+        <p><strong>出身：</strong>福岡県</p>
+        <p><strong>趣味：</strong>サウナ・カラオケ・サッカー観戦</p>
+        <p>動画クリエイターとして、「落合博満のオレ流チャンネル」「河北裕介公式チャンネル」などYouTubeコンテンツを中心に制作を担当。Firework Japanではクリエイティブディレクターとしてショート動画の制作、ライブ配信のプロデュースに携わる。</p>
+      </div>
+    </div>
+  </section>
+
   <script>
     const genreTabs = document.getElementById('genre-tabs');
     const industryTabs = document.getElementById('industry-tabs');
@@ -235,4 +236,10 @@
 
     function showFeed(id) {
       allFeeds.forEach(feed => feed.classList.remove('active'));
-      document.getElementById(id).classList.add
+      document.getElementById(id).classList.add('active');
+    }
+
+    function showTabs() {
+      genreTabs.classList.add('show');
+      industryTabs.classList.add('show');
+      creativeTabs.classList.remove('show
