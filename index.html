@@ -1,23 +1,136 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Firework Embed</title>
-  <script async type="text/javascript" src="//asset.fwcdn3.com/js/embed-feed.js"></script>
+  <meta charset="UTF-8" />
+  <title>Firework 業種別動画参考サイト</title>
+  <script async src="//asset.fwcdn3.com/js/embed-feed.js"></script>
   <style>
-    body { font-family: sans-serif; padding: 2rem; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+    }
+    h1 {
+      color: #e6007e;
+      margin-bottom: 1rem;
+    }
+    .btn-group {
+      margin-bottom: 2rem;
+    }
+    button {
+      background: #e6007e;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      margin-right: 0.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button.active {
+      background: #b00066;
+    }
+    fw-embed-feed {
+      display: none;
+      width: 100%;
+      height: 600px; /* 高さは必要に応じて調整 */
+      margin-bottom: 2rem;
+    }
+    fw-embed-feed.active {
+      display: block;
+    }
   </style>
 </head>
 <body>
-  <h1>Firework動画埋め込みページ</h1>
+  <h1>Firework 業種別動画参考サイト</h1>
+  <p>見たい業種のボタンを押してください。</p>
+
+  <div class="btn-group">
+    <button data-target="cosmetics" class="active">コスメ</button>
+    <button data-target="apparel">アパレル</button>
+    <button data-target="retail">リテール</button>
+    <button data-target="auto">自動車販売店</button>
+    <button data-target="creative">クリエイティブチーム動画</button>
+  </div>
+
   <fw-embed-feed
-    channel="kontentutimuzhi_zuo_jian_xiu"
+    id="cosmetics"
+    class="active"
+    channel="channel_cosmetics"
     mode="row"
     open_in="default"
     max_videos="0"
     placement="middle"
     player_placement="bottom-right"
-    playlist="glLX8g">
+    playlist="playlist_cosmetics">
   </fw-embed-feed>
+
+  <fw-embed-feed
+    id="apparel"
+    channel="channel_apparel"
+    mode="row"
+    open_in="default"
+    max_videos="0"
+    placement="middle"
+    player_placement="bottom-right"
+    playlist="playlist_apparel">
+  </fw-embed-feed>
+
+  <fw-embed-feed
+    id="retail"
+    channel="channel_retail"
+    mode="row"
+    open_in="default"
+    max_videos="0"
+    placement="middle"
+    player_placement="bottom-right"
+    playlist="playlist_retail">
+  </fw-embed-feed>
+
+  <fw-embed-feed
+    id="auto"
+    channel="channel_auto"
+    mode="row"
+    open_in="default"
+    max_videos="0"
+    placement="middle"
+    player_placement="bottom-right"
+    playlist="playlist_auto">
+  </fw-embed-feed>
+
+  <fw-embed-feed
+    id="creative"
+    channel="channel_creative"
+    mode="row"
+    open_in="default"
+    max_videos="0"
+    placement="middle"
+    player_placement="bottom-right"
+    playlist="playlist_creative">
+  </fw-embed-feed>
+
+  <script>
+    const buttons = document.querySelectorAll('.btn-group button');
+    const feeds = document.querySelectorAll('fw-embed-feed');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        // ボタンのactive切り替え
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // 対応するfw-embed-feedの表示切替
+        const targetId = button.getAttribute('data-target');
+        feeds.forEach(feed => {
+          if(feed.id === targetId) {
+            feed.classList.add('active');
+          } else {
+            feed.classList.remove('active');
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
