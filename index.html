@@ -227,21 +227,14 @@
   </section>
 
   <script>
-    const genreTabs = document.getElementById('genre-tabs');
-    const industryTabs = document.getElementById('industry-tabs');
-    const creativeTabs = document.getElementById('creative-tabs');
-    const allFeeds = document.querySelectorAll('fw-embed-feed');
-    const passwordInput = document.getElementById('passwordInput');
-    const passwordMessage = document.getElementById('passwordMessage');
+    document.addEventListener('DOMContentLoaded', () => {
+      const genreTabs = document.getElementById('genre-tabs');
+      const industryTabs = document.getElementById('industry-tabs');
+      const creativeTabs = document.getElementById('creative-tabs');
+      const allFeeds = document.querySelectorAll('fw-embed-feed');
+      const passwordInput = document.getElementById('passwordInput');
+      const passwordMessage = document.getElementById('passwordMessage');
+      const checkBtn = document.getElementById('checkPasswordBtn');
 
-    function showFeed(id) {
-      allFeeds.forEach(feed => feed.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-
-    function showTabs() {
-      genreTabs.classList.add('show');
-      industryTabs.classList.add('show');
-      creativeTabs.classList.remove('show
-
-                                    
+      function showFeed(id) {
+       
