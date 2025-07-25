@@ -5,120 +5,233 @@
   <title>Firework 動画ギャラリー</title>
   <script async src="https://asset.fwcdn3.com/js/embed-feed.js"></script>
   <style>
+    :root {
+      --accent-color: #7B61FF;
+      --bg-color: #000;
+      --text-color: #fff;
+      --btn-bg: #111;
+      --btn-hover: var(--accent-color);
+    }
+
     body {
-      background-color: #000;
-      color: #fff;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       font-family: sans-serif;
-      padding: 20px;
       margin: 0;
+      padding: 0;
     }
-    .password-gate {
-      margin-bottom: 20px;
+
+    header {
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid #333;
     }
+
+    .password-section {
+      text-align: center;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 500px;
+      background-color: #111;
+    }
+
+    .password-section input {
+      padding: 0.6rem;
+      border-radius: 4px;
+      border: none;
+      background-color: #fff;
+      color: #000;
+      font-size: 1rem;
+      width: 60%;
+      box-sizing: border-box;
+    }
+
+    .password-section button {
+      margin-left: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 4px;
+      background-color: var(--btn-bg);
+      color: var(--text-color);
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .password-section button:hover {
+      background-color: var(--btn-hover);
+    }
+
     #passwordMessage {
       color: red;
-      margin-top: 10px;
-    }
-    .tabs {
+      margin-top: 0.5rem;
       display: none;
-      gap: 10px;
-      margin-bottom: 20px;
+      font-weight: bold;
     }
-    .tabs button {
-      background-color: #222;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
+
+    .tabs, .playlist-tabs {
+      display: none;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem;
+    }
+
+    .tabs.show, .playlist-tabs.show {
+      display: flex;
+    }
+
+    button.tab-btn {
+      background-color: var(--btn-bg);
+      color: var(--text-color);
+      border: 1px solid #444;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
       cursor: pointer;
-      border-radius: 5px;
+      user-select: none;
     }
-    .tabs button.active {
-      background-color: #7B61FF;
+
+    button.tab-btn.active, button.tab-btn:hover {
+      background-color: var(--btn-hover);
+      border-color: var(--accent-color);
     }
-    .feed {
+
+    fw-embed-feed {
       display: none;
+      margin: 2rem auto;
+      max-width: 960px;
     }
-    .feed.active {
+
+    fw-embed-feed.active {
       display: block;
     }
   </style>
 </head>
 <body>
+  <header>
+    <p>パスワードを入力すると、動画事例を見ることができます。</p>
+  </header>
 
-<div class="password-gate">
-  <input type="password" id="passwordInput" placeholder="パスワードを入力" />
-  <button id="checkPassword">確認</button>
-  <div id="passwordMessage" style="display:none;">パスワードが違います</div>
-</div>
+  <div class="password-section">
+    <input type="password" id="passwordInput" placeholder="パスワードを入力" />
+    <button id="checkPasswordBtn">閲覧</button>
+    <div id="passwordMessage">パスワードが間違っています</div>
+  </div>
 
-<div class="tabs" id="genreTabs">
-  <button data-genre="industry" class="active">業種別</button>
-</div>
+  <div class="tabs" id="genre-tabs">
+    <button class="tab-btn active" data-genre="industry">業種ごと</button>
+    <button class="tab-btn" data-genre="creative">クリエイティブ形式</button>
+  </div>
 
-<div class="tabs" id="industryTabs" style="display:none;">
-  <button data-feed="industry-saiyo" class="active">採用</button>
-  <button data-feed="industry-tenpo">店舗</button>
-  <button data-feed="industry-ec">EC</button>
-</div>
+  <div class="playlist-tabs" id="industry-tabs">
+    <button class="tab-btn active" data-feed="industry-saiyo">採用</button>
+    <button class="tab-btn" data-feed="industry-biyou">美容・ファッション</button>
+    <button class="tab-btn" data-feed="industry-entame">エンタメ</button>
+  </div>
 
-<div class="feed" id="industry-saiyo">
-  <fw-embed-feed channel="kontentutimuzhi_zuo_jian_xiu" playlist="5LKAwv"></fw-embed-feed>
-</div>
-<div class="feed" id="industry-tenpo">
-  <fw-embed-feed channel="kontentutimuzhi_zuo_jian_xiu" playlist="a1aGW0"></fw-embed-feed>
-</div>
-<div class="feed" id="industry-ec">
-  <fw-embed-feed channel="kontentutimuzhi_zuo_jian_xiu" playlist="YVd5v1"></fw-embed-feed>
-</div>
+  <div class="playlist-tabs" id="creative-tabs">
+    <button class="tab-btn active" data-feed="creative-tateyoko">縦＋横</button>
+    <button class="tab-btn" data-feed="creative-live">ライブ配信切り抜き</button>
+    <button class="tab-btn" data-feed="creative-quiz">クイズ</button>
+    <button class="tab-btn" data-feed="creative-howto">How To</button>
+    <button class="tab-btn" data-feed="creative-animation">アニメーション</button>
+    <button class="tab-btn" data-feed="creative-seishi">静止画</button>
+  </div>
 
-<script>
-  const correctPassword = '2407'; // パスワードをここに
-  const passwordInput = document.getElementById('passwordInput');
-  const checkBtn = document.getElementById('checkPassword');
-  const passwordMessage = document.getElementById('passwordMessage');
-  const genreTabs = document.getElementById('genreTabs');
-  const industryTabs = document.getElementById('industryTabs');
+  <fw-embed-feed id="industry-saiyo" channel="kontentutimuzhi_zuo_jian_xiu" playlist="oNLbQv" mode="row" open_in="default" placement="middle" player_placement="bottom-right"></fw-embed-feed>
+  <fw-embed-feed id="industry-biyou" channel="kontentutimuzhi_zuo_jian_xiu" playlist="g1a7kg" mode="row" open_in="default" placement="middle" player_placement="bottom-right"></fw-embed-feed>
+  <fw-embed-feed id="industry-entame" channel="kontentutimuzhi_zuo_jian_xiu" playlist="oBAaR5" mode="row" open_in="default" placement="middle" player_placement="bottom-right"></fw-embed-feed>
 
-  checkBtn.addEventListener('click', () => {
-    const entered = passwordInput.value.trim();
-    if (entered === correctPassword) {
+  <fw-embed-feed id="creative-tateyoko" channel="kontentutimuzhi_zuo_jian_xiu" playlist="vrqPJg"></fw-embed-feed>
+  <fw-embed-feed id="creative-live" channel="kontentutimuzhi_zuo_jian_xiu" playlist="5D39Jv"></fw-embed-feed>
+  <fw-embed-feed id="creative-quiz" channel="kontentutimuzhi_zuo_jian_xiu" playlist="gkB10o"></fw-embed-feed>
+  <fw-embed-feed id="creative-howto" channel="kontentutimuzhi_zuo_jian_xiu" playlist="oyx1k5"></fw-embed-feed>
+  <fw-embed-feed id="creative-animation" channel="kontentutimuzhi_zuo_jian_xiu" playlist="5xNzMg"></fw-embed-feed>
+  <fw-embed-feed id="creative-seishi" channel="kontentutimuzhi_zuo_jian_xiu" playlist="5Llar5"></fw-embed-feed>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const genreTabs = document.getElementById('genre-tabs');
+      const industryTabs = document.getElementById('industry-tabs');
+      const creativeTabs = document.getElementById('creative-tabs');
+      const allFeeds = document.querySelectorAll('fw-embed-feed');
+      const passwordInput = document.getElementById('passwordInput');
+      const passwordMessage = document.getElementById('passwordMessage');
+      const checkBtn = document.getElementById('checkPasswordBtn');
+
+      genreTabs.style.display = 'none';
+      industryTabs.style.display = 'none';
+      creativeTabs.style.display = 'none';
+      allFeeds.forEach(feed => feed.style.display = 'none');
       passwordMessage.style.display = 'none';
-      genreTabs.style.display = 'flex';
-      industryTabs.style.display = 'flex';
 
-      // 初期表示フィードを明示的に表示
-      document.querySelector('[data-feed="industry-saiyo"]').classList.add('active');
-      showFeed('industry-saiyo');
+      const correctPassword = 'firework';
 
-      passwordInput.disabled = true;
-      checkBtn.disabled = true;
-    } else {
-      passwordMessage.style.display = 'block';
-    }
-  });
+      checkBtn.addEventListener('click', () => {
+        const entered = passwordInput.value.trim();
+        if (entered === correctPassword) {
+          passwordMessage.style.display = 'none';
+          genreTabs.style.display = 'flex';
+          showGenre('industry');
+          passwordInput.disabled = true;
+          checkBtn.disabled = true;
+        } else {
+          passwordMessage.style.display = 'block';
+        }
+      });
 
-  function showFeed(feedId) {
-    document.querySelectorAll('.feed').forEach(feed => {
-      feed.classList.remove('active');
-    });
-    const feed = document.getElementById(feedId);
-    if (feed) feed.classList.add('active');
+      genreTabs.querySelectorAll('button.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if(btn.classList.contains('active')) return;
+          genreTabs.querySelector('button.active').classList.remove('active');
+          btn.classList.add('active');
+          showGenre(btn.dataset.genre);
+        });
+      });
 
-    // タブ状態を更新
-    document.querySelectorAll('#industryTabs button').forEach(btn => {
-      btn.classList.remove('active');
-      if (btn.dataset.feed === feedId) {
-        btn.classList.add('active');
+      industryTabs.querySelectorAll('button.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if(btn.classList.contains('active')) return;
+          industryTabs.querySelector('button.active').classList.remove('active');
+          btn.classList.add('active');
+          showFeed(btn.dataset.feed);
+        });
+      });
+
+      creativeTabs.querySelectorAll('button.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if(btn.classList.contains('active')) return;
+          creativeTabs.querySelector('button.active').classList.remove('active');
+          btn.classList.add('active');
+          showFeed(btn.dataset.feed);
+        });
+      });
+
+      function showGenre(genre){
+        if(genre === 'industry'){
+          industryTabs.style.display = 'flex';
+          creativeTabs.style.display = 'none';
+          industryTabs.querySelector('button.active')?.click();
+        } else {
+          industryTabs.style.display = 'none';
+          creativeTabs.style.display = 'flex';
+          creativeTabs.querySelector('button.active')?.click();
+        }
+      }
+
+      function showFeed(id){
+        allFeeds.forEach(feed => {
+          if(feed.id === id){
+            feed.style.display = 'block';
+            feed.classList.add('active');
+          } else {
+            feed.style.display = 'none';
+            feed.classList.remove('active');
+          }
+        });
       }
     });
-  }
-
-  document.querySelectorAll('#industryTabs button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      showFeed(btn.dataset.feed);
-    });
-  });
-</script>
-
+  </script>
 </body>
 </html>
