@@ -27,16 +27,6 @@
       border-bottom: 1px solid #333;
     }
 
-    header img {
-      height: 40px;
-      margin-bottom: 1rem;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin: 0 0 0.5rem;
-    }
-
     .password-section {
       text-align: center;
       margin: 2rem auto;
@@ -116,52 +106,10 @@
     fw-embed-feed.active {
       display: block;
     }
-
-    .profile-section {
-      background-color: #111;
-      padding: 2rem 1rem;
-      text-align: center;
-      margin-top: 4rem;
-    }
-
-    .profile-section h2 {
-      color: var(--accent-color);
-      margin-bottom: 1rem;
-    }
-
-    .profiles {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .profile {
-      background-color: #222;
-      border: 1px solid var(--accent-color);
-      border-radius: 8px;
-      padding: 1rem;
-      width: 280px;
-      text-align: left;
-    }
-
-    .profile h3 {
-      color: var(--accent-color);
-      margin-top: 0;
-    }
-
-    .profile p {
-      font-size: 0.9rem;
-      color: #ccc;
-    }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://uploads-ssl.webflow.com/601b6e2ebf9eb5fc38a7c1cf/637794dca54b4901df546f84_fw-logo-white.svg" alt="Firework Logo" />
-    <h1>Firework 動画ギャラリー</h1>
     <p>パスワードを入力すると、動画事例を見ることができます。</p>
   </header>
 
@@ -202,31 +150,6 @@
   <fw-embed-feed id="creative-animation" channel="kontentutimuzhi_zuo_jian_xiu" playlist="5xNzMg"></fw-embed-feed>
   <fw-embed-feed id="creative-seishi" channel="kontentutimuzhi_zuo_jian_xiu" playlist="5Llar5"></fw-embed-feed>
 
-  <section class="profile-section">
-    <h2>Creativeメンバー紹介</h2>
-    <p style="color: #ccc;">豊富な経験を持ち合わせた弊社クリエイティブ・ディレクターがサポート致します</p>
-    <div class="profiles">
-      <div class="profile">
-        <h3>関井 奈津（Natsu Sekii）</h3>
-        <p><strong>出身：</strong>大阪</p>
-        <p><strong>趣味：</strong>旅行</p>
-        <p>デジタルアドバタイジングコンソーシアムにて、ストラテジックプランナーとしてメディアバイイングや広告運用を担当。2021年より現職にて、Fireworkを活用したショート動画制作やライブ配信のプロデュースを担当。</p>
-      </div>
-      <div class="profile">
-        <h3>石島 慎也（Shinya Ishijima）</h3>
-        <p><strong>出身：</strong>神奈川県</p>
-        <p><strong>趣味：</strong>サウナ・カラオケ・サッカー観戦</p>
-        <p>テレビ番組制作会社を経てCandeeに入社し、ライブ配信やライブコマースの番組制作・立ち上げを担当。その後BitStarにて企業YouTubeチャンネルの制作・運用支援を経験。2021年より現職にて、Fireworkを活用した動画マーケティングの戦略設計・コンテンツ制作・コンサルティングに従事。</p>
-      </div>
-      <div class="profile">
-        <h3>森田 太陽（Morita Takaharu）</h3>
-        <p><strong>出身：</strong>福岡県</p>
-        <p><strong>趣味：</strong>サウナ・カラオケ・サッカー観戦</p>
-        <p>動画クリエイターとして、「落合博満のオレ流チャンネル」「河北裕介公式チャンネル」などYouTubeコンテンツを中心に制作を担当。Firework Japanではクリエイティブディレクターとしてショート動画の制作、ライブ配信のプロデュースに携わる。</p>
-      </div>
-    </div>
-  </section>
-
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const genreTabs = document.getElementById('genre-tabs');
@@ -237,25 +160,20 @@
       const passwordMessage = document.getElementById('passwordMessage');
       const checkBtn = document.getElementById('checkPasswordBtn');
 
-      // 初期非表示
       genreTabs.style.display = 'none';
       industryTabs.style.display = 'none';
       creativeTabs.style.display = 'none';
       allFeeds.forEach(feed => feed.style.display = 'none');
       passwordMessage.style.display = 'none';
 
-      const correctPassword = 'firework'; // ここでパスワード設定
+      const correctPassword = 'firework';
 
       checkBtn.addEventListener('click', () => {
         const entered = passwordInput.value.trim();
         if (entered === correctPassword) {
           passwordMessage.style.display = 'none';
-
-          // パスワード成功後、タブと最初の動画表示
           genreTabs.style.display = 'flex';
           showGenre('industry');
-
-          // 入力欄とボタンを無効化（変更したければコメントアウト）
           passwordInput.disabled = true;
           checkBtn.disabled = true;
         } else {
@@ -263,25 +181,15 @@
         }
       });
 
-      // 業種 or クリエイティブ形式 タブ切替
       genreTabs.querySelectorAll('button.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          if(btn.classList.contains('active')) return; // すでに選択中
-
-          // active切り替え
+          if(btn.classList.contains('active')) return;
           genreTabs.querySelector('button.active').classList.remove('active');
           btn.classList.add('active');
-
-          // 表示切替
-          if(btn.dataset.genre === 'industry'){
-            showGenre('industry');
-          } else {
-            showGenre('creative');
-          }
+          showGenre(btn.dataset.genre);
         });
       });
 
-      // playlist-tabs のタブ切替
       industryTabs.querySelectorAll('button.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           if(btn.classList.contains('active')) return;
@@ -290,6 +198,7 @@
           showFeed(btn.dataset.feed);
         });
       });
+
       creativeTabs.querySelectorAll('button.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           if(btn.classList.contains('active')) return;
@@ -299,12 +208,11 @@
         });
       });
 
-      // ジャンルに合わせて playlist-tabs と最初の動画を表示
       function showGenre(genre){
         if(genre === 'industry'){
           industryTabs.style.display = 'flex';
           creativeTabs.style.display = 'none';
-          industryTabs.querySelector('button.active')?.click(); // 最初のactiveを押す
+          industryTabs.querySelector('button.active')?.click();
         } else {
           industryTabs.style.display = 'none';
           creativeTabs.style.display = 'flex';
@@ -312,7 +220,6 @@
         }
       }
 
-      // 動画切り替え
       function showFeed(id){
         allFeeds.forEach(feed => {
           if(feed.id === id){
